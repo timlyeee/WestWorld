@@ -2,12 +2,15 @@
 import { _decorator, Component, Node, JsonAsset, SpriteFrame, Sprite, Vec3, Layers, CCInteger, Prefab, instantiate } from 'cc';
 import { SwitchNode } from './SwitchNode';
 import { TrackNode } from './TrackNode';
+import { Train } from './Train';
 const { ccclass, property, type } = _decorator;
 
 declare class LevelConfiguration extends JsonAsset {
     json: {
         tile: Array<Array<number>>; 
         switchers: Record<number, { options: number[] }>;
+        trainPosition: number[],
+        carriageNumber: number,
     }
 }
 
@@ -44,10 +47,19 @@ export class LevelGenerater extends Component {
     @type(Prefab)
     public switcherPrefab: Prefab | null = null;
 
+    @type(Prefab)
+    public trainPrefab: Prefab | null = null;
+
+    @type(Prefab)
+    public carriagePrefab: Prefab | null = null;
+
+    @type(CCInteger)
     public tileSize: number = 40;
 
     public trackMatrix: Array<Array<TrackNode | null>> = [];
     public allNodes: Node[] = [];
+    public train: Node | null = null;
+    public carriages: Node[] = [];
 
     start(){
         this.loadScene(this.levelIndex);
@@ -66,6 +78,7 @@ export class LevelGenerater extends Component {
                 const type = tile[i][j];
                 if (isNormalTrack(type)) {
                     const track = instantiate(this.trackPrefab!);
+                    track.name = `Track ${i}, ${j}`;
                     this.allNodes.push(track);
                     const trackComp = track.getComponent(TrackNode);
                     this.trackMatrix[i][j] = trackComp;
@@ -75,9 +88,10 @@ export class LevelGenerater extends Component {
                     track.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (rowNumber - 1 - i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
                 } else if (isSwitcher(type)) {
                     const switcher = instantiate(this.switcherPrefab!);
+                    switcher.name = `Switcher ${i}, ${j}`;
                     this.allNodes.push(switcher);
                     const switcherComp = switcher.getComponent(SwitchNode);
-                    switcherComp!.spriteFrameArray = this.trackSpriteFrames.filter((val, index) => -1 != configurations.switchers[type].options.indexOf(index + 1));
+                    switcherComp!.spriteFrameArray = configurations.switchers[type].options.map((val) => this.trackSpriteFrames[val - 1]);
                     switcherComp!.spriteFrame = this.trackSpriteFrames[configurations.switchers[type].options[0] - 1];
                     this.trackMatrix[i][j] = switcherComp;
                     switcher.setParent(this.node);
@@ -130,10 +144,9 @@ export class LevelGenerater extends Component {
                                 break;
                                 
                         }
-                        track.reconnect();
                     }
-
-
+                    track.currentIndex = 0;
+                    track.reconnect();
                 } else {
                     
                     const top = trackMatrix[i - 1]?.[j];
@@ -155,6 +168,27 @@ export class LevelGenerater extends Component {
                 }
             }
         }
+
+        this.train = instantiate(this.trainPrefab!);
+        const trainComp = this.train.getComponent(Train);
+        this.train!.setParent(this.node);
+        this.train!.layer = uiLayer;
+        const startPosRow = configurations.trainPosition[0];
+        let startPosColumn = configurations.trainPosition[1];
+        trainComp!.init(this.trackMatrix[startPosRow][startPosColumn]!);
+        let lastTrainComp = trainComp;
+
+        for (let i = 0; i < configurations.carriageNumber; i++ ) {
+            const carriage = instantiate(this.carriagePrefab!);
+            this.carriages.push(carriage);
+            const carriageComp = carriage.getComponent(Train);
+            lastTrainComp!.backwardNode = carriage;
+            carriageComp!.forwardNode = lastTrainComp!.node;
+            lastTrainComp = carriageComp;
+            carriage!.setParent(this.node);
+            carriage!.layer = uiLayer;
+            carriageComp!.init(this.trackMatrix[startPosRow][--startPosColumn]!);
+        }
         
         // [3]
     }
@@ -164,6 +198,12 @@ export class LevelGenerater extends Component {
             x.destroy();
         });
         this.trackMatrix.length = 0;
+        this.carriages.forEach(x => {
+            x.destroy();
+        });
+        this.carriages.length = 0;
+        this.train?.destroy();
+        this.train = null;
     }
 
     // update (deltaTime: number) {

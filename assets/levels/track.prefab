@@ -139,7 +139,7 @@
     "__prefab": {
       "__id__": 7
     },
-    "_linkedNodes": [],
+    "linkedNodes": [],
     "hasTrain": false,
     "_id": ""
   },

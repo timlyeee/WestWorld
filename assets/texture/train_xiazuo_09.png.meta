@@ -30,11 +30,45 @@
         ".json"
       ],
       "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "a90337cb-8950-4300-83dc-a6ffc68a21bd@f9941",
+      "displayName": "train_xiazuo_09",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimType": "none",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 930,
+        "height": 930,
+        "rawWidth": 930,
+        "rawHeight": 930,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a90337cb-8950-4300-83dc-a6ffc68a21bd@6c48a",
+        "atlasUuid": ""
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
     }
   },
   "userData": {
     "hasAlpha": true,
-    "type": "texture",
-    "redirect": "a90337cb-8950-4300-83dc-a6ffc68a21bd@6c48a"
+    "type": "sprite-frame",
+    "redirect": "a90337cb-8950-4300-83dc-a6ffc68a21bd@f9941"
   }
 }

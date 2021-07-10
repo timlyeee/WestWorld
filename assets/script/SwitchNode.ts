@@ -35,10 +35,14 @@ export class SwitchNode extends TrackNode {
         this.disconnect();
         this.connect();
     }
+    start(){
+        this.spriteFrame = this.spriteFrameArray[this.currentIndex];
+        this.linkedNodes = this.switchList.slice(2 *this._currentIndex,2 *(this._currentIndex +1));
+    }
     onEnable(){
-        this.node.on(Node.EventType.MOUSE_DOWN, this.switch,this);
+        this.node.on(Node.EventType.MOUSE_UP, this.switch,this);
     }
     onDisable(){
-        this.node.off(Node.EventType.MOUSE_DOWN, this.switch,this);
+        this.node.off(Node.EventType.MOUSE_UP, this.switch,this);
     }
 }
