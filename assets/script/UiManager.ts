@@ -59,7 +59,7 @@ export class UiManager extends Component {
     
     //饶了，不然有bug
     changeLevel1( ){
-        
+        this.levelGenerater?.clear();
         this.levelGenerater!.loadScene(0);
         this.openScene();
         const buttonAnimation = this.levelButtons[0].getComponent(Animation);
@@ -69,7 +69,7 @@ export class UiManager extends Component {
         this.levelButtons[3].getComponent(Animation)?.play("4Lvn");
     }
     changeLevel2( ){
-        
+        this.levelGenerater?.clear();
         this.levelGenerater!.loadScene(1);
         this.openScene();
         const buttonAnimation = this.levelButtons[1].getComponent(Animation);
@@ -78,7 +78,7 @@ export class UiManager extends Component {
         this.levelButtons[2].getComponent(Animation)?.play("3Lvn");
         this.levelButtons[3].getComponent(Animation)?.play("4Lvn");
     }changeLevel3( ){
-        
+        this.levelGenerater?.clear();
         this.levelGenerater!.loadScene(2);
         this.openScene();
         const buttonAnimation = this.levelButtons[2].getComponent(Animation);
@@ -87,7 +87,7 @@ export class UiManager extends Component {
         this.levelButtons[0].getComponent(Animation)?.play("1Lvn");
         this.levelButtons[3].getComponent(Animation)?.play("4Lvn");
     }changeLevel4( ){
-        
+        this.levelGenerater?.clear();
         this.levelGenerater!.loadScene(3);
         this.openScene();
         const buttonAnimation = this.levelButtons[3].getComponent(Animation);
