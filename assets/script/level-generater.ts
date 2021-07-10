@@ -145,6 +145,7 @@ export class LevelGenerater extends Component {
                                 
                         }
                     }
+                    track.currentIndex = 0;
                     track.reconnect();
                 } else {
                     
