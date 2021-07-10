@@ -72,13 +72,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
-      "height": 60
+      "width": 155,
+      "height": 155
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.25
+      "y": 0.5
     },
     "_id": ""
   },
@@ -109,7 +109,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "7f4298c0-3457-4559-a549-59425cafcfab@f9941",
+      "__uuid__": "b1ef827e-4d16-47a5-9bea-4ef3a27708f8@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -148,38 +148,39 @@
     "_currentNode": null,
     "spriteFrameArray": [
       {
-        "__uuid__": "4dcb1780-e446-4462-aa84-80007f5d87c4@f9941",
+        "__uuid__": "192358dd-a3ea-448b-b36d-f04ec64fdff7@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "ec595b69-7aa9-430a-89f0-1986d3ec93e6@f9941",
+        "__uuid__": "55e5a47e-47b4-4bd6-a163-889366a569e1@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "32270bf4-78cd-4113-a0ac-3834121bfa13@f9941",
+        "__uuid__": "0962468a-0733-4a00-828c-1a403b63ceb5@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "7f4298c0-3457-4559-a549-59425cafcfab@f9941",
+        "__uuid__": "b1ef827e-4d16-47a5-9bea-4ef3a27708f8@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "2f87506f-3a42-48d1-a071-a5f125ea149d@f9941",
+        "__uuid__": "cd8a1847-e402-481d-b255-6a22a6cabbd7@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "341146b9-62ab-4342-8dac-22506eadf102@f9941",
+        "__uuid__": "6dae0deb-91c1-4feb-97f2-6945843efab6@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "a90337cb-8950-4300-83dc-a6ffc68a21bd@f9941",
+        "__uuid__": "c9adb752-18e0-49ec-b98c-cadf188a8612@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "10fa6d92-3c22-48b5-ae6a-78d050d4632b@f9941",
+        "__uuid__": "edcb723f-b1bf-412d-a9c2-a3e5fb9dddfa@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
+    "cargoSpriteFrameArray": [],
     "lastNode": null,
     "_cargo": null,
     "_id": ""

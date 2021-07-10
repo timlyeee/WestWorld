@@ -2,6 +2,7 @@
 import { _decorator, Component, Node, SpriteComponent, SpriteFrame, tween ,math, CCLoader } from 'cc';
 import { Cargo } from './Cargo';
 import { TrackNode } from './TrackNode';
+import { UiManager } from './UiManager';
 const { ccclass, property , type ,requireComponent} = _decorator;
 enum direction {
     LEFTUP,
@@ -17,10 +18,14 @@ enum direction {
 @ccclass('Train')
 @requireComponent(SpriteComponent)
 export class Train extends Component {
+    static speed = 3;
     move(){
-        this.currentNode?.responeTrain(this);
-        if(this.backwardTrain){
-            this.backwardTrain.move();
+        if(this.currentNode?.responeTrain(this)){
+            if(this.backwardTrain){
+                this.backwardTrain.move();
+            }
+        } else {
+            UiManager.Instance?.OpenMenu();
         }
     }
     get forwardTrain(){
@@ -86,7 +91,7 @@ export class Train extends Component {
                 }
             }
             tween(this.node)
-            .to(1,{
+            .to(1/Train.speed,{
                 worldPosition:value.node.worldPosition,
             })
             .call(()=>{
@@ -110,6 +115,7 @@ export class Train extends Component {
     cargoSpriteFrameArray:SpriteFrame[] =[];
     @type(TrackNode)
     lastNode:TrackNode|null=null;
+    times=0
     @type(Cargo)
     _cargo:Cargo|null=null;
     @type(Cargo)
@@ -132,11 +138,14 @@ export class Train extends Component {
         this._currentNode = trackNode;
         this.node.position = trackNode.node.position;
     }
-    onEnable(){
-        this.node.on(Node.EventType.MOUSE_UP, this.move,this);
-    }
-    onDisable(){
-        this.node.off(Node.EventType.MOUSE_UP, this.move,this);
+    update(deltaTime:number){
+        if(!this.forwardNode && UiManager.Instance?.isInScene){
+            this.times += deltaTime;
+            if(this.times >= 1/Train.speed +0.01){
+                this.move();
+                this.times = 0;
+            }
+        }
     }
 }
 
