@@ -572,7 +572,7 @@
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "c33d4591-1dd1-4529-940a-721b7fa7dc20@f9941",
+        "__uuid__": "42f022c9-0c38-49e2-9124-753fb124d00f@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
@@ -4753,7 +4753,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -434.661,
+      "x": 401.025,
       "y": 275.976,
       "z": -1
     },
