@@ -547,7 +547,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "levelIndex": 3,
+    "levelIndex": 0,
     "levelConfigurations": [
       {
         "__uuid__": "014091b9-66a7-45f4-9629-60f4a65c9f0d",
@@ -600,6 +600,15 @@
       "__uuid__": "09f4ed19-98c8-4108-8776-6bd355d7763e",
       "__expectedType__": "cc.Prefab"
     },
+    "trainPrefab": {
+      "__uuid__": "4f910e52-b3ce-44d9-8ef0-5ba7d88b0049",
+      "__expectedType__": "cc.Prefab"
+    },
+    "carriagePrefab": {
+      "__uuid__": "aba8b3fd-d03d-4e49-a208-5375e1e02bf8",
+      "__expectedType__": "cc.Prefab"
+    },
+    "tileSize": 40,
     "_id": "e3T0ogRKBK0q797nT4pEa2"
   },
   {

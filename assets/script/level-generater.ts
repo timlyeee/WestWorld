@@ -2,12 +2,15 @@
 import { _decorator, Component, Node, JsonAsset, SpriteFrame, Sprite, Vec3, Layers, CCInteger, Prefab, instantiate } from 'cc';
 import { SwitchNode } from './SwitchNode';
 import { TrackNode } from './TrackNode';
+import { Train } from './Train';
 const { ccclass, property, type } = _decorator;
 
 declare class LevelConfiguration extends JsonAsset {
     json: {
         tile: Array<Array<number>>; 
         switchers: Record<number, { options: number[] }>;
+        trainPosition: number[],
+        carriageNumber: number,
     }
 }
 
@@ -44,10 +47,18 @@ export class LevelGenerater extends Component {
     @type(Prefab)
     public switcherPrefab: Prefab | null = null;
 
+    @type(Prefab)
+    public trainPrefab: Prefab | null = null;
+
+    @type(Prefab)
+    public carriagePrefab: Prefab | null = null;
+
+    @type(CCInteger)
     public tileSize: number = 40;
 
     public trackMatrix: Array<Array<TrackNode | null>> = [];
     public allNodes: Node[] = [];
+    public train: Node | null = null;
 
     start(){
         this.loadScene(this.levelIndex);
@@ -155,6 +166,22 @@ export class LevelGenerater extends Component {
                 }
             }
         }
+
+        this.train = instantiate(this.trainPrefab!);
+        const trainComp = this.train.getComponent(Train);
+        this.train!.setParent(this.node);
+        this.train!.layer = uiLayer;
+        const startPosRow = configurations.trainPosition[0];
+        let startPosColumn = configurations.trainPosition[1];
+        trainComp!.currentNode = this.trackMatrix[startPosRow][startPosColumn];
+
+        for (let i = 0; i < configurations.carriageNumber; i++ ) {
+            const carriage = instantiate(this.carriagePrefab!);
+            const trainComp = this.train.getComponent(Train);
+            carriage!.setParent(this.node);
+            carriage!.layer = uiLayer;
+            trainComp!.currentNode = this.trackMatrix[startPosRow][--startPosColumn];
+        }
         
         // [3]
     }
@@ -164,6 +191,8 @@ export class LevelGenerater extends Component {
             x.destroy();
         });
         this.trackMatrix.length = 0;
+        this.train?.destroy();
+        this.train = null;
     }
 
     // update (deltaTime: number) {

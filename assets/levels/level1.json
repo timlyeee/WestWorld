@@ -21,6 +21,8 @@
     "switchers": {
         "7": { "options": [ 6, 4 ]},
         "8": { "options": [ 3, 5 ]}
-    }
+    },
+    "trainPosition": [8,  2],
+    "carriageNumber": 2
 
 }
