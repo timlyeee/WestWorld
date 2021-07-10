@@ -35,6 +35,9 @@ export class SwitchNode extends TrackNode {
         this.disconnect();
         this.connect();
     }
+    start(){
+        this.spriteFrame = this.spriteFrameArray[this.currentIndex];  
+    }
     onEnable(){
         this.node.on(Node.EventType.MOUSE_UP, this.switch,this);
     }
