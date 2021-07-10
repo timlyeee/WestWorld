@@ -11,11 +11,11 @@ export class TrackNode extends Component {
         if(train.forwardTrain){
             train.currentNode = train.forwardTrain.lastNode;
         } else {
-            train.currentNode = this.linkedNodes.find((node)=>{return node != train.backwardTrain?.currentNode}) as TrackNode;
+            train.currentNode = this.linkedNodes.find((node)=>{return node != train.backwardTrain?.currentNode?.node})?.getComponent(TrackNode) as TrackNode;
         }
     }
-    @type([TrackNode])
-    linkedNodes:TrackNode[]= [];
+    @type([Node])
+    linkedNodes:Node[]= [];
     @type(SpriteFrame)
     get spriteFrame(){
         return this.getComponent(SpriteComponent)!.spriteFrame;
