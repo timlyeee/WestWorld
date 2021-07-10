@@ -1,5 +1,6 @@
 
-import { _decorator, Component, Node,Animation, Camera, Button, Canvas, Layout} from 'cc';
+import { _decorator, Component, Node,Animation, Camera, Button, Canvas, Layout, EventHandler, Font} from 'cc';
+import { LevelGenerater } from './level-generater';
 const { ccclass, property } = _decorator;
 
 @ccclass('UiManager')
@@ -14,6 +15,8 @@ export class UiManager extends Component {
     private leftAnim :Animation|null = null;
     private rightAnim :Animation|null = null;
 
+    @property(Button)
+    public levelButtons:Button[]=[];
 
     @property(Layout)
     public menuLayout: Layout|null = null;
@@ -23,18 +26,16 @@ export class UiManager extends Component {
 
     public isUi:boolean = true;
 
+    @property(Canvas)
+    public levelCanvas:Canvas|null = null;
+
+    public levelGenerater :LevelGenerater|null=null;
     start () {
         //const leftAnim =  this.leftNodeToMove!.getComponent(Animation);
         this.isUi = true;
         this.rightAnim =  this.rightNodeToMove!.getComponent(Animation);
         this.leftAnim =  this.leftNodeToMove!.getComponent(Animation);
-        window.onclick=(event)=>{
-            if(this.isUi){
-                this.openScene();
-                this.isUi=false;
-            }
-                
-        };
+        this.levelGenerater = this.levelCanvas!.getComponent(LevelGenerater);
     }
     openScene(){
         
@@ -54,7 +55,46 @@ export class UiManager extends Component {
     }
     goHome(){
         this.menuButton!.node.active = false;
-        this.le
+    }   
+    
+    //饶了，不然有bug
+    changeLevel1( ){
+        
+        this.levelGenerater!.loadScene(0);
+        this.openScene();
+        const buttonAnimation = this.levelButtons[0].getComponent(Animation);
+        buttonAnimation?.play("1Lv1");
+        this.levelButtons[1].getComponent(Animation)?.play("2Lvn");
+        this.levelButtons[2].getComponent(Animation)?.play("3Lvn");
+        this.levelButtons[3].getComponent(Animation)?.play("4Lvn");
+    }
+    changeLevel2( ){
+        
+        this.levelGenerater!.loadScene(1);
+        this.openScene();
+        const buttonAnimation = this.levelButtons[1].getComponent(Animation);
+        buttonAnimation?.play("2Lv2");
+        this.levelButtons[0].getComponent(Animation)?.play("1Lvn");
+        this.levelButtons[2].getComponent(Animation)?.play("3Lvn");
+        this.levelButtons[3].getComponent(Animation)?.play("4Lvn");
+    }changeLevel3( ){
+        
+        this.levelGenerater!.loadScene(2);
+        this.openScene();
+        const buttonAnimation = this.levelButtons[2].getComponent(Animation);
+        buttonAnimation?.play("3Lv3");
+        this.levelButtons[1].getComponent(Animation)?.play("2Lvn");
+        this.levelButtons[0].getComponent(Animation)?.play("1Lvn");
+        this.levelButtons[3].getComponent(Animation)?.play("4Lvn");
+    }changeLevel4( ){
+        
+        this.levelGenerater!.loadScene(3);
+        this.openScene();
+        const buttonAnimation = this.levelButtons[3].getComponent(Animation);
+        buttonAnimation?.play("4Lv4");
+        this.levelButtons[1].getComponent(Animation)?.play("2Lvn");
+        this.levelButtons[2].getComponent(Animation)?.play("3Lvn");
+        this.levelButtons[0].getComponent(Animation)?.play("1Lvn");
     }
 }
 
