@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, SpriteComponent, SpriteFrame } from 'cc';
+import { _decorator, Component, Node, SpriteComponent, SpriteFrame, tween } from 'cc';
 import { Cargo } from './Cargo';
 import { TrackNode } from './TrackNode';
 const { ccclass, property , type ,requireComponent} = _decorator;
@@ -31,7 +31,11 @@ export class Train extends Component {
     set currentNode(value){
         if(value){
             this._currentNode = value;
-            this.node.position = value.node.position
+            tween(this.node)
+            .to(1,{
+                worldPosition:value.node.worldPosition,
+            })
+            .start()
         }
     }
     @type([SpriteFrame])
@@ -55,7 +59,12 @@ export class Train extends Component {
             this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
         }
     }
-
+    onEnable(){
+        this.node.on(Node.EventType.MOUSE_DOWN, this.move,this);
+    }
+    onDisable(){
+        this.node.off(Node.EventType.MOUSE_DOWN, this.move,this);
+    }
 }
 
 /**
