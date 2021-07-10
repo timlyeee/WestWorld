@@ -1,21 +1,17 @@
 
-import { _decorator, Component, Node, CCInteger } from 'cc';
-const { ccclass, property } = _decorator;
+import { _decorator, Component, Node, CCInteger, ccenum, SpriteComponent, SpriteFrame } from 'cc';
+const { ccclass, property, type,requireComponent } = _decorator;
 
-enum CargoType{
-    None = 0 ,
+export enum CargoType{
     Red,
     Yellow,
     Blue
 }
-
+ccenum(CargoType);
 @ccclass("Cargo")
-class Cargo {
-
-    @property({type: CargoType})
-    public type: number = CargoType.None;
-
-
+export class Cargo{
+    @type(CargoType)
+    public type: CargoType = CargoType.Red;
 }
 
 
