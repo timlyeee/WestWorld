@@ -14,9 +14,11 @@ export class SwitchNode extends TrackNode {
     @type(CCInteger)
     currentIndex=0;
     switch(event:Event){
-        this.currentIndex ++;
-        this.currentIndex %= this.switchList.length/2;
-        this.spriteFrame = this.spriteFrameArray[this.currentIndex];
+        if(!this.hasTrain){
+            this.currentIndex ++;
+            this.currentIndex %= this.switchList.length/2;
+            this.spriteFrame = this.spriteFrameArray[this.currentIndex];
+        }
     }
     @property({override:true})
     get linkedNodes(){
