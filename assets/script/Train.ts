@@ -68,7 +68,7 @@ export class Train extends Component {
     }
     init(trackNode:TrackNode){
         this._currentNode = trackNode;
-        this.node.worldPosition = trackNode.node.worldPosition;
+        this.node.position = trackNode.node.position;
     }
     onEnable(){
         this.node.on(Node.EventType.MOUSE_UP, this.move,this);

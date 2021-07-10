@@ -59,6 +59,7 @@ export class LevelGenerater extends Component {
     public trackMatrix: Array<Array<TrackNode | null>> = [];
     public allNodes: Node[] = [];
     public train: Node | null = null;
+    public carriages: Node[] = [];
 
     start(){
         this.loadScene(this.levelIndex);
@@ -77,6 +78,7 @@ export class LevelGenerater extends Component {
                 const type = tile[i][j];
                 if (isNormalTrack(type)) {
                     const track = instantiate(this.trackPrefab!);
+                    track.name = `Track ${i}, ${j}`;
                     this.allNodes.push(track);
                     const trackComp = track.getComponent(TrackNode);
                     this.trackMatrix[i][j] = trackComp;
@@ -86,9 +88,10 @@ export class LevelGenerater extends Component {
                     track.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (rowNumber - 1 - i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
                 } else if (isSwitcher(type)) {
                     const switcher = instantiate(this.switcherPrefab!);
+                    switcher.name = `Switcher ${i}, ${j}`;
                     this.allNodes.push(switcher);
                     const switcherComp = switcher.getComponent(SwitchNode);
-                    switcherComp!.spriteFrameArray = this.trackSpriteFrames.filter((val, index) => -1 != configurations.switchers[type].options.indexOf(index + 1));
+                    switcherComp!.spriteFrameArray = configurations.switchers[type].options.map((val) => this.trackSpriteFrames[val - 1]);
                     switcherComp!.spriteFrame = this.trackSpriteFrames[configurations.switchers[type].options[0] - 1];
                     this.trackMatrix[i][j] = switcherComp;
                     switcher.setParent(this.node);
@@ -141,10 +144,8 @@ export class LevelGenerater extends Component {
                                 break;
                                 
                         }
-                        track.reconnect();
                     }
-
-
+                    track.reconnect();
                 } else {
                     
                     const top = trackMatrix[i - 1]?.[j];
@@ -173,14 +174,19 @@ export class LevelGenerater extends Component {
         this.train!.layer = uiLayer;
         const startPosRow = configurations.trainPosition[0];
         let startPosColumn = configurations.trainPosition[1];
-        trainComp!.currentNode = this.trackMatrix[startPosRow][startPosColumn];
+        trainComp!.init(this.trackMatrix[startPosRow][startPosColumn]!);
+        let lastTrainComp = trainComp;
 
         for (let i = 0; i < configurations.carriageNumber; i++ ) {
             const carriage = instantiate(this.carriagePrefab!);
-            const trainComp = this.train.getComponent(Train);
+            this.carriages.push(carriage);
+            const carriageComp = carriage.getComponent(Train);
+            lastTrainComp!.backwardNode = carriage;
+            carriageComp!.forwardNode = lastTrainComp!.node;
+            lastTrainComp = carriageComp;
             carriage!.setParent(this.node);
             carriage!.layer = uiLayer;
-            trainComp!.currentNode = this.trackMatrix[startPosRow][--startPosColumn];
+            carriageComp!.init(this.trackMatrix[startPosRow][--startPosColumn]!);
         }
         
         // [3]
@@ -191,6 +197,10 @@ export class LevelGenerater extends Component {
             x.destroy();
         });
         this.trackMatrix.length = 0;
+        this.carriages.forEach(x => {
+            x.destroy();
+        });
+        this.carriages.length = 0;
         this.train?.destroy();
         this.train = null;
     }
