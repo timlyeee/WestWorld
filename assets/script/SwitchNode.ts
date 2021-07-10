@@ -19,13 +19,16 @@ export class SwitchNode extends TrackNode {
             this.currentIndex ++;
             this.currentIndex %= this.switchList.length/2;
             this.spriteFrame = this.spriteFrameArray[this.currentIndex];
-            this.linkedNodes.map(node=>{node.getComponent(TrackNode)?.linkedNodes.filter(trackNode => trackNode!=this.node)});
-            this.linkedNodes.map(node=>{node.getComponent(TrackNode)?.linkedNodes.push(this.node)}); 
+            this.reconnect();
         }
     }
     @property({override:true})
     get linkedNodes(){
         return this.switchList.slice(2 *this.currentIndex,2 *(this.currentIndex +1))
+    }
+    reconnect(){
+        this.linkedNodes.map(node=>{node.getComponent(TrackNode)?.linkedNodes.filter(trackNode => trackNode!=this.node)});
+        this.linkedNodes.map(node=>{node.getComponent(TrackNode)?.linkedNodes.push(this.node)}); 
     }
     onEnable(){
         this.node.on(Node.EventType.MOUSE_DOWN, this.switch,this);
