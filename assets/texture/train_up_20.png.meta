@@ -30,11 +30,45 @@
         ".json"
       ],
       "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "ec595b69-7aa9-430a-89f0-1986d3ec93e6@f9941",
+      "displayName": "train_up_20",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -2.5,
+        "offsetY": 60,
+        "trimX": 39,
+        "trimY": 179,
+        "width": 227,
+        "height": 452,
+        "rawWidth": 310,
+        "rawHeight": 930,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "ec595b69-7aa9-430a-89f0-1986d3ec93e6@6c48a",
+        "atlasUuid": ""
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
     }
   },
   "userData": {
     "hasAlpha": true,
-    "type": "texture",
-    "redirect": "ec595b69-7aa9-430a-89f0-1986d3ec93e6@6c48a"
+    "type": "sprite-frame",
+    "redirect": "ec595b69-7aa9-430a-89f0-1986d3ec93e6@f9941"
   }
 }

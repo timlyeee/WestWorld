@@ -30,11 +30,45 @@
         ".json"
       ],
       "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "8c6ad0e9-78a6-4298-bcf7-c20120f5e245@f9941",
+      "displayName": "train_zuoshang_08",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -143.5,
+        "offsetY": -36.5,
+        "trimX": 6,
+        "trimY": 151,
+        "width": 321,
+        "height": 391,
+        "rawWidth": 620,
+        "rawHeight": 620,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "8c6ad0e9-78a6-4298-bcf7-c20120f5e245@6c48a",
+        "atlasUuid": ""
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
     }
   },
   "userData": {
     "hasAlpha": true,
-    "type": "texture",
-    "redirect": "8c6ad0e9-78a6-4298-bcf7-c20120f5e245@6c48a"
+    "type": "sprite-frame",
+    "redirect": "8c6ad0e9-78a6-4298-bcf7-c20120f5e245@f9941"
   }
 }

@@ -30,11 +30,45 @@
         ".json"
       ],
       "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "a4364115-0b73-44cb-8459-341c33a50c12@f9941",
+      "displayName": "truck_shangyou_17",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 16.5,
+        "offsetY": -14.5,
+        "trimX": 34,
+        "trimY": 31,
+        "width": 275,
+        "height": 277,
+        "rawWidth": 310,
+        "rawHeight": 310,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a4364115-0b73-44cb-8459-341c33a50c12@6c48a",
+        "atlasUuid": ""
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
     }
   },
   "userData": {
     "hasAlpha": true,
-    "type": "texture",
-    "redirect": "a4364115-0b73-44cb-8459-341c33a50c12@6c48a"
+    "type": "sprite-frame",
+    "redirect": "a4364115-0b73-44cb-8459-341c33a50c12@f9941"
   }
 }
