@@ -12,7 +12,9 @@ export class TrackNode extends Component {
         if(train.forwardTrain){
             train.currentNode = train.forwardTrain.lastNode;
         } else {
+            // 头节点
             train.currentNode = this.linkedNodes.find((node)=>{return node != train.backwardTrain?.currentNode?.node})?.getComponent(TrackNode) as TrackNode;
+            train.currentNode.hasTrain =true;
         }
         // 如果是尾节点认为当前节点不存在火车
         if(!train.backwardNode){    

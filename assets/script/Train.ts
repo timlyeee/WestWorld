@@ -50,6 +50,7 @@ export class Train extends Component {
     }
     set cargo(value){
         if(value){
+            this._cargo = value;
             const spriteFrame = this.spriteFrameArray.find((frame,index)=>{ index +1 === value.type});
             if(spriteFrame){
                 this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;

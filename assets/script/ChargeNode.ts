@@ -18,7 +18,9 @@ export class ChargeNode extends TrackNode {
     set cargo(value){
         this._cargo = value;
         if(value){
-            const spriteFrame = this.spriteFrameArray.find((frame,index)=>{ index +1 === value.type});
+            const spriteFrame = this.spriteFrameArray.find((frame,index)=>{ 
+                return index -1 === value.type 
+            });
             if(spriteFrame){
                 this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
             }
@@ -27,6 +29,7 @@ export class ChargeNode extends TrackNode {
             this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
         }
     }
+    
     @type(CargoType)
     cargoType:CargoType = CargoType.Red;
     responeTrain(train:Train){
@@ -37,6 +40,7 @@ export class ChargeNode extends TrackNode {
         } else if(!this.cargo && train.cargo && train.cargo.type === this.cargoType){
             this.cargo = train.cargo;
             train.cargo = null;
+
         }
     }
 }
