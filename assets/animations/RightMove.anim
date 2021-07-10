@@ -1,0 +1,259 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "RightMove",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 60,
+    "speed": 1,
+    "wrapMode": 1,
+    "events": [],
+    "enableTrsBlending": false,
+    "_duration": 1.3833333333333333,
+    "_keys": [
+      [
+        0,
+        0.9166666666666666
+      ],
+      [
+        0,
+        1.0166666666666666
+      ],
+      [
+        0,
+        1.1166666666666667
+      ],
+      [
+        0,
+        1.15
+      ],
+      [
+        0,
+        1.15
+      ],
+      [
+        0,
+        1.3833333333333333
+      ],
+      [
+        0,
+        1.2666666666666666
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          {
+            "__id__": 1
+          },
+          "position"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 358.649,
+              "y": 182.911,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 652.393,
+              "y": 182.911,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 2
+          },
+          "position"
+        ],
+        "data": {
+          "keys": 1,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 139.873,
+              "y": 227.742,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 588.459,
+              "y": 227.742,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 3
+          },
+          "position"
+        ],
+        "data": {
+          "keys": 2,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 153.014,
+              "y": 29.682,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 601.6,
+              "y": 29.682,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 4
+          },
+          "position"
+        ],
+        "data": {
+          "keys": 3,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 425.588,
+              "y": -52.808,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 584.984,
+              "y": -52.808,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 5
+          },
+          "position"
+        ],
+        "data": {
+          "keys": 4,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 420.208,
+              "y": -228.545,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 586.435,
+              "y": -228.545,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 6
+          },
+          "position"
+        ],
+        "data": {
+          "keys": 5,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": 160.187,
+              "y": -147.849,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 690.748,
+              "y": -147.849,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      },
+      {
+        "modifiers": [
+          {
+            "__id__": 7
+          },
+          "position"
+        ],
+        "data": {
+          "keys": 6,
+          "values": [
+            {
+              "__type__": "cc.Vec3",
+              "x": -13.758,
+              "y": -174.748,
+              "z": 0
+            },
+            {
+              "__type__": "cc.Vec3",
+              "x": 587.57,
+              "y": -174.748,
+              "z": 0
+            }
+          ],
+          "easingMethods": {}
+        }
+      }
+    ],
+    "_commonTargets": [],
+    "_hash": 4118352417
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "Left1"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "Left2"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "Left3"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "Left4"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "Left5"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "Left6"
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "Left7"
+  }
+]
