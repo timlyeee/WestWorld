@@ -60,12 +60,6 @@ export class Train extends Component {
             this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
         }
     }
-    onEnable(){
-        this.node.on(Node.EventType.MOUSE_DOWN, this.move,this);
-    }
-    onDisable(){
-        this.node.off(Node.EventType.MOUSE_DOWN, this.move,this);
-    }
 }
 
 /**

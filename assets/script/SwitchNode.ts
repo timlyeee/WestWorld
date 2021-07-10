@@ -36,9 +36,9 @@ export class SwitchNode extends TrackNode {
         this.connect();
     }
     onEnable(){
-        this.node.on(Node.EventType.MOUSE_DOWN, this.switch,this);
+        this.node.on(Node.EventType.MOUSE_UP, this.switch,this);
     }
     onDisable(){
-        this.node.off(Node.EventType.MOUSE_DOWN, this.switch,this);
+        this.node.off(Node.EventType.MOUSE_UP, this.switch,this);
     }
 }
