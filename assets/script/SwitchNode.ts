@@ -1,6 +1,7 @@
 
 import { _decorator, Component, Node, CCInteger, SpriteFrame, SpriteComponent } from 'cc';
 import { TrackNode } from './TrackNode';
+import { Train } from './Train';
 const { ccclass, property , type,requireComponent } = _decorator;
 
 @ccclass('SwitchNode')
@@ -14,9 +15,12 @@ export class SwitchNode extends TrackNode {
     currentIndex=0;
     switch(event:Event){
         this.currentIndex ++;
-        this.currentIndex %= this.switchList.length;
+        this.currentIndex %= this.switchList.length/2;
         this.spriteFrame = this.spriteFrameArray[this.currentIndex];
-        this.linkedNodes = this.switchList.slice(2 *this.currentIndex,2 *(this.currentIndex +1))
+    }
+    @property({override:true})
+    get linkedNodes(){
+        return this.switchList.slice(2 *this.currentIndex,2 *(this.currentIndex +1))
     }
     onEnable(){
         this.node.on(Node.EventType.MOUSE_DOWN, this.switch,this);
