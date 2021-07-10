@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, SpriteComponent, SpriteFrame } from 'cc';
+import { _decorator, Component, Node, SpriteComponent, SpriteFrame, Sprite } from 'cc';
 import  {Train} from './Train';
 const { ccclass, property,type,requireComponent} = _decorator;
 @ccclass('TrackNode')
