@@ -7,11 +7,19 @@ const { ccclass, property, type } = _decorator;
 declare class LevelConfiguration extends JsonAsset {
     json: {
         tile: Array<Array<number>>; 
-        switchers: Record<number, { options: number[], default: number }>;
+        switchers: Record<number, { options: number[] }>;
     }
 }
 
 const uiLayer = 1 << 25;
+
+function isSwitcher (type: number) {
+    return type > 6 && type <= 20;
+}
+
+function isNormalTrack (type: number) {
+    return type !== 0 && type <= 6;
+}
 
 @ccclass('LevelGenerated')
 export class LevelGenerated extends Component {
@@ -39,6 +47,7 @@ export class LevelGenerated extends Component {
     public tileSize: number = 40;
 
     public trackMatrix: Array<Array<TrackNode | null>> = [];
+    public allNodes: Node[] = [];
 
     start () {
         const configurations = this.levelConfigurations[this.levelIndex].json;
@@ -46,27 +55,30 @@ export class LevelGenerated extends Component {
         const firstColumn = tile[0];
         const columnNumber = firstColumn.length;
         const rowNumber = tile.length;
-        for (let i = 0; i < rowNumber; i++) {
-            this.trackMatrix.push(new Array(columnNumber));
+        this.trackMatrix.length = rowNumber;
+        for (let i = rowNumber - 1; i >= 0; i--) {
+            this.trackMatrix[i] = new Array(columnNumber);
             for (let j = 0; j < columnNumber; ++j) {
                 const type = tile[i][j];
-                if (type !== 0 && type <= 6) {
+                if (isNormalTrack(type)) {
                     const track = instantiate(this.trackPrefab!);
+                    this.allNodes.push(track);
                     const trackComp = track.getComponent(TrackNode);
                     this.trackMatrix[i][j] = trackComp;
                     trackComp!.spriteFrame = this.trackSpriteFrames[tile[i][j] - 1];
                     track.setParent(this.node);
                     track.layer = uiLayer;
-                    track.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
-                } else if (type > 6) {
+                    track.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (rowNumber - 1 - i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
+                } else if (isSwitcher(type)) {
                     const switcher = instantiate(this.switcherPrefab!);
+                    this.allNodes.push(switcher);
                     const switcherComp = switcher.getComponent(SwitchNode);
                     switcherComp!.spriteFrameArray = this.trackSpriteFrames.filter((val, index) => -1 != configurations.switchers[type].options.indexOf(index + 1));
-                    switcherComp!.spriteFrame = this.trackSpriteFrames[configurations.switchers[type].default - 1];
+                    switcherComp!.spriteFrame = this.trackSpriteFrames[configurations.switchers[type].options[0] - 1];
                     this.trackMatrix[i][j] = switcherComp;
                     switcher.setParent(this.node);
                     switcher.layer = uiLayer;
-                    switcher.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
+                    switcher.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (rowNumber - 1 - i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
                 }
             }
         }
@@ -96,20 +108,21 @@ export class LevelGenerated extends Component {
                                 break;
                                 
                             case 3: 
+                                track.switchList.push(top!.node);
                                 track.switchList.push(right!.node);
-                                track.switchList.push(bottom!.node);
+                                
                                 break; 
                             case 4:
+                                track.switchList.push(top!.node);
                                 track.switchList.push(left!.node);
-                                track.switchList.push(bottom!.node);
                                 break;
                             case 5:
-                                track.switchList.push(top!.node);
                                 track.switchList.push(right!.node);
+                                track.switchList.push(bottom!.node);
                                 break;  
                             case 6:
-                                track.switchList.push(top!.node);
                                 track.switchList.push(left!.node);
+                                track.switchList.push(bottom!.node);
                                 break;
                                 
                         }
@@ -140,6 +153,13 @@ export class LevelGenerated extends Component {
         }
         
         // [3]
+    }
+
+    clear () {
+        this.allNodes.forEach(x => {
+            x.destroy();
+        });
+        this.trackMatrix.length = 0;
     }
 
     // update (deltaTime: number) {
