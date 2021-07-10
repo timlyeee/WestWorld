@@ -1,11 +1,12 @@
 
-import { _decorator, Component, Node,Animation, Camera, Button, Canvas, Layout, EventHandler, Font, BlockInputEvents} from 'cc';
+import { _decorator, Component, Node,Animation, Camera, Button, Canvas, Layout, EventHandler, Font, BlockInputEvents, game} from 'cc';
 import { LevelGenerater } from './level-generater';
 import { Reposition } from './reposition';
 const { ccclass, property } = _decorator;
 
 @ccclass('UiManager')
 export class UiManager extends Component {
+    static Instance : UiManager | null = null;
     @property(Node)
     public leftNodeToMove:Node | null = null;
     @property(Node)
@@ -37,6 +38,7 @@ export class UiManager extends Component {
 
     public levelGenerater :LevelGenerater|null=null;
     start () {
+        UiManager.Instance = this;
         //const leftAnim =  this.leftNodeToMove!.getComponent(Animation);
         this.isInScene = false;
         this.rightAnim =  this.rightNodeToMove!.getComponent(Animation);
@@ -66,10 +68,13 @@ export class UiManager extends Component {
         this.isInScene=true;
         this.BlockNode!.active=false;
     }
+    //Pause
     OpenMenu(){
         this.menuLayout!.node.active = true;
         this.BlockNode!.active=true;
+        //todo: stop train move
     }
+    //
     continue(){
         this.menuLayout!.node.active = false;
         this.BlockNode!.active=false;
@@ -85,11 +90,13 @@ export class UiManager extends Component {
         this.leftAnim!.once(Animation.EventType.FINISHED,()=>{
             this.leftAnim!.getState("MoveToLeft").speed = 1;
         })
-        for(var b of this.levelButtons){
-            b.getComponent(Reposition)?.resetPosition();
+        for(var i =0;i<4;i++){
+            this.levelButtons[i].getComponent(Animation)?.play();
         }
+
         this.menuLayout!.node.active=false;
         this.BlockNode!.active=true;
+        this.isInScene = false;
     }   
     
     //饶了，不然有bug

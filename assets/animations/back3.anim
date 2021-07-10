@@ -1,0 +1,46 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "back3",
+  "_objFlags": 0,
+  "_native": "",
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "events": [],
+  "enableTrsBlending": false,
+  "_duration": 1,
+  "_keys": [
+    [
+      0,
+      1
+    ]
+  ],
+  "_stepness": 0,
+  "_curves": [
+    {
+      "modifiers": [
+        "position"
+      ],
+      "data": {
+        "keys": 0,
+        "values": [
+          {
+            "__type__": "cc.Vec3",
+            "x": -580.387,
+            "y": -273.219,
+            "z": 0
+          },
+          {
+            "__type__": "cc.Vec3",
+            "x": -138.667,
+            "y": -67.879,
+            "z": 0
+          }
+        ],
+        "easingMethods": {}
+      }
+    }
+  ],
+  "_commonTargets": [],
+  "_hash": 1792593774
+}
