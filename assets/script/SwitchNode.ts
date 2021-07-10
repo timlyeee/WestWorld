@@ -15,9 +15,12 @@ export class SwitchNode extends TrackNode {
     currentIndex=0;
     switch(event:Event){
         if(!this.hasTrain){
+            this.linkedNodes.map(node=>{node.getComponent(TrackNode)?.linkedNodes.filter(trackNode => trackNode!=this.node)});
             this.currentIndex ++;
             this.currentIndex %= this.switchList.length/2;
             this.spriteFrame = this.spriteFrameArray[this.currentIndex];
+            this.linkedNodes.map(node=>{node.getComponent(TrackNode)?.linkedNodes.filter(trackNode => trackNode!=this.node)});
+            this.linkedNodes.map(node=>{node.getComponent(TrackNode)?.linkedNodes.push(this.node)}); 
         }
     }
     @property({override:true})
