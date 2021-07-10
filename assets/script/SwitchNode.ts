@@ -12,7 +12,10 @@ export class SwitchNode extends TrackNode {
     @type([SpriteFrame])
     spriteFrameArray:SpriteFrame[] = [];
     @type(CCInteger)
-    currentIndex=0;
+    _currentIndex=0;
+    @type(CCInteger)
+    get currentIndex(){return this._currentIndex}
+    set currentIndex(index){this._currentIndex = index, this.linkedNodes = this.switchList.slice(2 *this._currentIndex,2 *(this._currentIndex +1))}
     switch(event:Event){
         if(!this.hasTrain){
             this.disconnect();
@@ -21,10 +24,6 @@ export class SwitchNode extends TrackNode {
             this.spriteFrame = this.spriteFrameArray[this.currentIndex];
             this.reconnect();
         }
-    }
-    @property({override:true})
-    get linkedNodes(){
-        return this.switchList.slice(2 *this.currentIndex,2 *(this.currentIndex +1))
     }
     disconnect(){
         this.linkedNodes.map(node=>{node.getComponent(TrackNode)!.linkedNodes = node.getComponent(TrackNode)!.linkedNodes.filter(trackNode => trackNode!=this.node)});

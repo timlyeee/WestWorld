@@ -22,16 +22,9 @@ export class TrackNode extends Component {
         }
     }
     @type([Node])
-    _linkedNodes:Node[]= [];
+    linkedNodes:Node[]= [];
     @property
     hasTrain :boolean = false;
-    @type([Node])
-    get linkedNodes(){
-        return this._linkedNodes;
-    }
-    set linkedNodes(v){
-        this._linkedNodes = v;
-    }
     @type(SpriteFrame)
     get spriteFrame(){
         return this.getComponent(SpriteComponent)!.spriteFrame;
