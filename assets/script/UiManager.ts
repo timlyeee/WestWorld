@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node,Animation, Camera} from 'cc';
+import { _decorator, Component, Node,Animation, Camera, Button, Canvas, Layout} from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('UiManager')
@@ -13,11 +13,28 @@ export class UiManager extends Component {
 
     private leftAnim :Animation|null = null;
     private rightAnim :Animation|null = null;
-    private moveInAnim: Animation|null = null;
+
+
+    @property(Layout)
+    public menuLayout: Layout|null = null;
+
+    @property(Button)
+    public menuButton: Button|null = null;
+
+    public isUi:boolean = true;
+
     start () {
         //const leftAnim =  this.leftNodeToMove!.getComponent(Animation);
-        
-        this.moveInAnim = this.moveInOutCamera!.getComponent(Animation);
+        this.isUi = true;
+        this.rightAnim =  this.rightNodeToMove!.getComponent(Animation);
+        this.leftAnim =  this.leftNodeToMove!.getComponent(Animation);
+        window.onclick=(event)=>{
+            if(this.isUi){
+                this.openScene();
+                this.isUi=false;
+            }
+                
+        };
     }
     openScene(){
         
@@ -26,9 +43,19 @@ export class UiManager extends Component {
         console.log("open scene");
         this.leftAnim!.play();
         this.rightAnim!.play();
-        this.moveInAnim!.play();
+        this.menuButton!.node.active = true;
     }
+    OpenMenu(){
+        this.menuLayout!.node.active = true;
 
+    }
+    continue(){
+        this.menuLayout!.node.active = false;
+    }
+    goHome(){
+        this.menuButton!.node.active = false;
+        this.le
+    }
 }
 
 /**
