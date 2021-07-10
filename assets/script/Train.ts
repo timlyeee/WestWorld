@@ -89,21 +89,25 @@ export class Train extends Component {
             .to(1,{
                 worldPosition:value.node.worldPosition,
             })
+            .call(()=>{
+                this.lastDeltaVector = deltaVector;
+                if(deltaVector.x >0) {
+                    this.spriteFrame = this.spriteFrameArray[direction.RIGHT]
+                } else if (deltaVector.x < 0) {
+                    this.spriteFrame = this.spriteFrameArray[direction.LEFT]
+                } else if (deltaVector.y > 0 ) {
+                    this.spriteFrame = this.spriteFrameArray[direction.UP]
+                } else if (deltaVector.y < 0) {
+                    this.spriteFrame = this.spriteFrameArray[direction.DOWN]
+                }
+            })
             .start()
-            this.lastDeltaVector = deltaVector;
-            if(deltaVector.x >0) {
-                this.spriteFrame = this.spriteFrameArray[direction.RIGHT]
-            } else if (deltaVector.x < 0) {
-                this.spriteFrame = this.spriteFrameArray[direction.LEFT]
-            } else if (deltaVector.y > 0 ) {
-                this.spriteFrame = this.spriteFrameArray[direction.UP]
-            } else if (deltaVector.y < 0) {
-                this.spriteFrame = this.spriteFrameArray[direction.DOWN]
-            }
         }
     }
     @type([SpriteFrame])
     spriteFrameArray:SpriteFrame[] =[];
+    @type([SpriteFrame])
+    cargoSpriteFrameArray:SpriteFrame[] =[];
     @type(TrackNode)
     lastNode:TrackNode|null=null;
     @type(Cargo)
@@ -115,16 +119,13 @@ export class Train extends Component {
     set cargo(value){
         if(value){
             this._cargo = value;
-            const spriteFrame = this.spriteFrameArray.find((frame,index)=>{ index +1 === value.type});
+            const spriteFrame = this.cargoSpriteFrameArray[value.type];
             if(spriteFrame){
-                this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
+                this.corgeSprite!.spriteFrame = spriteFrame;
+                this.corgeSprite!.visibility = 255;
             }
         } else {
-            const spriteFrame = this.spriteFrameArray[0];
-            tween(this.corgeSprite!.node.worldPosition)
-            .by(1,{y:20})
-            .hide()
-            this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
+            this.corgeSprite!.visibility = 0;
         }
     }
     init(trackNode:TrackNode){
