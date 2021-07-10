@@ -45,8 +45,8 @@ export class LevelGenerater extends Component {
     }
 
     loadScene (index : number) {
-        const configurations = this.levelConfigurations[this.levelIndex].json;
-        const tile = this.levelConfigurations[this.levelIndex].json.tile;
+        const configurations = this.levelConfigurations[index].json;
+        const tile = this.levelConfigurations[index].json.tile;
         const firstColumn = tile[0];
         const columnNumber = firstColumn.length;
         const rowNumber = tile.length;
