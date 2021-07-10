@@ -18,6 +18,8 @@ export class Train extends Component {
     get backwardTrain(){
         return this.backwardNode?.getComponent(Train)
     }
+    @type(SpriteComponent)
+    corgeSprite:SpriteComponent | null =null;
     @type(Node)
     forwardNode:Node|null = null;
     @type(Node)
@@ -31,6 +33,7 @@ export class Train extends Component {
     set currentNode(value){
         if(value){
             this._currentNode = value;
+            // 0 ~ 7 左上 上 右上 右 右下 下 左下 左  
             tween(this.node)
             .to(1,{
                 worldPosition:value.node.worldPosition,
@@ -57,8 +60,15 @@ export class Train extends Component {
             }
         } else {
             const spriteFrame = this.spriteFrameArray[0];
+            tween(this.corgeSprite!.node.worldPosition)
+            .by(1,{y:20})
+            .hide()
             this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
         }
+    }
+    init(trackNode:TrackNode){
+        this._currentNode = trackNode;
+        this.node.worldPosition = trackNode.node.worldPosition;
     }
     onEnable(){
         this.node.on(Node.EventType.MOUSE_UP, this.move,this);
