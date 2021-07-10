@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, CCInteger, SpriteFrame, SpriteComponent } from 'cc';
+import { _decorator, Component, Node, CCInteger, SpriteFrame, SpriteComponent, AudioSource } from 'cc';
 import { TrackNode } from './TrackNode';
 import { Train } from './Train';
 const { ccclass, property , type,requireComponent } = _decorator;
@@ -7,6 +7,7 @@ const { ccclass, property , type,requireComponent } = _decorator;
 @ccclass('SwitchNode')
 @requireComponent(SpriteComponent)
 export class SwitchNode extends TrackNode {
+    public audioEffect: AudioSource | null = null;
     @type([Node])
     switchList:Node[]=[];
     @type([SpriteFrame])
@@ -18,6 +19,7 @@ export class SwitchNode extends TrackNode {
     set currentIndex(index){this._currentIndex = index, this.linkedNodes = this.switchList.slice(2 *this._currentIndex,2 *(this._currentIndex +1))}
     switch(event:Event){
         if(!this.hasTrain){
+            this.audioEffect!.playOneShot(this.audioEffect!.clip!);
             this.disconnect();
             this.currentIndex ++;
             this.currentIndex %= this.switchList.length/2;
@@ -36,6 +38,7 @@ export class SwitchNode extends TrackNode {
         this.connect();
     }
     start(){
+        this.audioEffect = this.getComponent(AudioSource);
         this.spriteFrame = this.spriteFrameArray[this.currentIndex];
         this.linkedNodes = this.switchList.slice(2 *this._currentIndex,2 *(this._currentIndex +1));
     }
