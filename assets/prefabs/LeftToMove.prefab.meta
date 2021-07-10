@@ -2,12 +2,12 @@
   "ver": "1.1.27",
   "importer": "prefab",
   "imported": true,
-  "uuid": "f5ccc7be-ccc0-49eb-8efe-28d02766b590",
+  "uuid": "78479a0c-e271-4988-a4dc-953c4edafdf7",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "Sphere"
+    "syncNodeName": "LeftToMove"
   }
 }
