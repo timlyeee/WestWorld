@@ -33,13 +33,6 @@ export class LevelGenerater extends Component {
     @type(Prefab)
     public trackPrefab: Prefab | null = null;
 
-    start(){
-        this.loadScene(this.levelIndex);
-    }
-
-    loadScene (index : number) {
-        this.levelIndex = index;
-        const tile = this.levelConfigurations[index].json.tile;
     @type(Prefab)
     public switcherPrefab: Prefab | null = null;
 
@@ -47,7 +40,11 @@ export class LevelGenerater extends Component {
 
     public trackMatrix: Array<Array<TrackNode | null>> = [];
 
-    start () {
+    start(){
+        this.loadScene(this.levelIndex);
+    }
+
+    loadScene (index : number) {
         const configurations = this.levelConfigurations[this.levelIndex].json;
         const tile = this.levelConfigurations[this.levelIndex].json.tile;
         const firstColumn = tile[0];
