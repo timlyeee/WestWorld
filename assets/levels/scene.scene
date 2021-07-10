@@ -303,7 +303,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 333.0143540669856,
+    "_orthoHeight": 320,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -448,7 +448,7 @@
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "42f022c9-0c38-49e2-9124-753fb124d00f@f9941",
+        "__uuid__": "c33d4591-1dd1-4529-940a-721b7fa7dc20@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
@@ -470,6 +470,10 @@
     ],
     "trackPrefab": {
       "__uuid__": "fdde54dd-6e06-4187-8fe4-74ca58e5885d",
+      "__expectedType__": "cc.Prefab"
+    },
+    "switcherPrefab": {
+      "__uuid__": "09f4ed19-98c8-4108-8776-6bd355d7763e",
       "__expectedType__": "cc.Prefab"
     },
     "_id": "e3T0ogRKBK0q797nT4pEa2"
