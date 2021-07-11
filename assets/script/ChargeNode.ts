@@ -48,14 +48,21 @@ export class ChargeNode extends TrackNode {
     cargoType:CargoType = CargoType.PIG;
     responeTrain(train:Train){
         const result = super.responeTrain(train);
-        if(train.forwardNode){
-            if(this.cargo && !train.cargo){
-                train.cargo = this.cargo;
-                this.cargo = null;
-            } else if(!this.cargo && train.cargo && train.cargo.type === this.cargoType){
-                this.cargo = train.cargo;
-                train.cargo = null;
+        if(!train.forwardNode){
+            let carriage = train.backwardTrain;
+            while (carriage) {
+                if(this.cargo && !carriage.cargo){
+                    carriage.cargo = this.cargo;
+                    this.cargo = null;
+                    break;
+                } else if(!this.cargo && carriage.cargo && carriage.cargo.type === this.cargoType){
+                    this.cargo = carriage.cargo;
+                    carriage.cargo = null;
+                    break;
+                }
+                carriage = carriage.backwardTrain;
             }
+            
         }
         return result;
     }
