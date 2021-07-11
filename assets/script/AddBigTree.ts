@@ -13,10 +13,14 @@ export class AddBigTree extends Component {
     @property(Prefab)
     public bigTree:Prefab | null = null;
     start () {
+        
+
+        
+    }
+    addBigTree(){
         const bigTree = instantiate(this.bigTree!);
         this.node.addChild(bigTree);
-        bigTree.position = new Vec3(-170.304, 275.173,0);
-        
+        bigTree.position = new Vec3(-148.304, 209.173,0);
         
     }
 
