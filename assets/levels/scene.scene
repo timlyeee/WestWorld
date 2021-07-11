@@ -13186,7 +13186,7 @@
         "__id__": 926
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 945
@@ -24502,7 +24502,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "levelIndex": 3,
+    "levelIndex": 0,
     "levelConfigurations": [
       {
         "__uuid__": "014091b9-66a7-45f4-9629-60f4a65c9f0d",
@@ -24593,7 +24593,10 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
-    "targetPrefab": null,
+    "targetPrefab": {
+      "__uuid__": "b866db5f-dcdd-4abd-8462-178c37307af8",
+      "__expectedType__": "cc.Prefab"
+    },
     "bigTree": {
       "__uuid__": "f35e9f15-646f-41c0-a917-e9a9c59631c0",
       "__expectedType__": "cc.Prefab"
@@ -24643,7 +24646,7 @@
         "__id__": 1261
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 1336
