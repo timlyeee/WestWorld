@@ -2,12 +2,12 @@
   "ver": "1.1.27",
   "importer": "prefab",
   "imported": true,
-  "uuid": "82c4a8de-fec2-402a-aa9b-20cf3aa79f58",
+  "uuid": "0349744f-5b42-4837-8ec4-e00240ebfc51",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "HouseNoCow"
+    "syncNodeName": "marker"
   }
 }

@@ -1,5 +1,7 @@
 
 import { _decorator, Component, Node, JsonAsset, SpriteFrame, Sprite, Vec3, Layers, CCInteger, Prefab, instantiate } from 'cc';
+import { Cargo } from './Cargo';
+import { ChargeNode } from './ChargeNode';
 import { SwitchNode } from './SwitchNode';
 import { TrackNode } from './TrackNode';
 import { Train } from './Train';
@@ -11,6 +13,7 @@ declare class LevelConfiguration extends JsonAsset {
         switchers: Record<number, { options: number[] }>;
         trainPosition: number[],
         carriageNumber: number,
+        chargers: Record<number, { name: string, type: number, state: number, trackType: number }>
     }
 }
 
@@ -22,6 +25,10 @@ function isSwitcher (type: number) {
 
 function isNormalTrack (type: number) {
     return type !== 0 && type <= 6;
+}
+
+function isCharger (type: number) {
+    return type >= 21;
 }
 
 @ccclass('LevelGenerated')
@@ -52,6 +59,15 @@ export class LevelGenerater extends Component {
 
     @type(Prefab)
     public carriagePrefab: Prefab | null = null;
+
+    @type(Prefab)
+    public chargerPrefab: Prefab | null = null;
+
+    @type(Prefab)
+    public markerPrefab: Prefab | null = null;
+
+    @type([SpriteFrame])
+    public cargoSpriteFrames: SpriteFrame[] = [];
 
     @type(CCInteger)
     public tileSize: number = 40;
@@ -97,6 +113,28 @@ export class LevelGenerater extends Component {
                     switcher.setParent(this.node);
                     switcher.layer = uiLayer;
                     switcher.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (rowNumber - 1 - i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
+                } else if (isCharger(type)) {
+                    const track = instantiate(this.chargerPrefab!);
+                    track.name = `Charger ${i}, ${j}`;
+                    this.allNodes.push(track);
+                    const chargerComp = track.getComponent(ChargeNode);
+                    chargerComp!.cargoType = configurations.chargers[type].type;
+                    chargerComp!.stationName = `Canvas/LV${this.levelIndex + 1}/${configurations.chargers[type].name}`; 
+                    if (configurations.chargers[type].state) {
+                        chargerComp!.cargo = new Cargo();
+                        chargerComp!.cargo.spriteFrame = this.cargoSpriteFrames[configurations.chargers[type].type];
+                        chargerComp!.cargo.type = configurations.chargers[type].type;
+                    }
+                    this.trackMatrix[i][j] = chargerComp;
+                    chargerComp!.spriteFrame = this.trackSpriteFrames[configurations.chargers[type].trackType - 1];
+                    track.setParent(this.node);
+                    track.layer = uiLayer;
+                    track.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (rowNumber - 1 - i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
+                    const marker = instantiate(this.markerPrefab!);
+                    // marker.getComponent(Sprite)!.spriteFrame = this.cargoSpriteFrames[configurations.chargers[type].type];
+                    marker.setParent(track);
+                    marker.layer = uiLayer;
+                    marker.position = new Vec3(0, 0, 0);
                 }
             }
         }

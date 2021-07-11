@@ -3,15 +3,19 @@ import { _decorator, Component, Node, CCInteger, ccenum, SpriteComponent, Sprite
 const { ccclass, property, type,requireComponent } = _decorator;
 
 export enum CargoType{
-    Red,
-    Yellow,
-    Blue
+    PIG,
+    COAL,
+    COW,
+    WOOD,
+    SLAVE
 }
 ccenum(CargoType);
 @ccclass("Cargo")
 export class Cargo{
     @type(CargoType)
-    public type: CargoType = CargoType.Red;
+    public type: CargoType = CargoType.PIG;
+
+    public spriteFrame: SpriteFrame | null = null;
 }
 
 

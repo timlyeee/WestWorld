@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, SpriteFrame, SpriteComponent } from 'cc';
+import { _decorator, Component, Node, SpriteFrame, SpriteComponent, CCString, find, Animation } from 'cc';
 import { TrackNode } from './TrackNode';
 import {Cargo,CargoType} from './Cargo';
 import { Train } from './Train';
@@ -9,8 +9,9 @@ const { ccclass, property,type } = _decorator;
 export class ChargeNode extends TrackNode {
     @type(Cargo)
     _cargo:Cargo|null=null;
-        @type([SpriteFrame])
-    spriteFrameArray:SpriteFrame[] =[];
+    stationName: string = '';
+
+    animation: Animation | null = null;
     @type(Cargo)
     get cargo(){
         return this._cargo
@@ -18,20 +19,33 @@ export class ChargeNode extends TrackNode {
     set cargo(value){
         this._cargo = value;
         if(value){
-            const spriteFrame = this.spriteFrameArray.find((frame,index)=>{ 
-                return index -1 === value.type 
-            });
-            if(spriteFrame){
-                this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
+            if (this.animation) {
+                this.animation.play(this.animation.clips[0]!.name);
             }
+            
         } else {
-            const spriteFrame = this.spriteFrameArray[0];
-            this.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
+            if (this.animation) {
+                this.animation.play(this.animation.clips[1]!.name);
+            }
+        }
+    }
+
+    start () {
+        this.animation = find(this.stationName)?.getComponent(Animation)!;
+        if(this._cargo){
+            if (this.animation) {
+                this.animation.play(this.animation.clips[0]!.name);
+            }
+            
+        } else {
+            if (this.animation) {
+                this.animation.play(this.animation.clips[1]!.name);
+            }
         }
     }
     
     @type(CargoType)
-    cargoType:CargoType = CargoType.Red;
+    cargoType:CargoType = CargoType.PIG;
     responeTrain(train:Train){
         const result =super.responeTrain(train);
         if(this.cargo && !train.cargo){
