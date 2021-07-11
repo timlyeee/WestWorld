@@ -74,8 +74,6 @@ export class Train extends Component {
     }
     @type([SpriteFrame])
     spriteFrameArray:SpriteFrame[] =[];
-    @type([SpriteFrame])
-    cargoSpriteFrameArray:SpriteFrame[] =[];
     @type(TrackNode)
     lastNode:TrackNode|null=null;
     times=0
@@ -88,13 +86,12 @@ export class Train extends Component {
     set cargo(value){
         if(value){
             this._cargo = value;
-            const spriteFrame = this.cargoSpriteFrameArray[value.type];
+            const spriteFrame = value.spriteFrame;
             if(spriteFrame){
                 this.corgeSprite!.spriteFrame = spriteFrame;
-                this.corgeSprite!.visibility = 255;
             }
         } else {
-            this.corgeSprite!.visibility = 0;
+            this.corgeSprite!.spriteFrame = null
         }
     }
     init(trackNode:TrackNode){
@@ -102,7 +99,7 @@ export class Train extends Component {
         this.node.position = trackNode.node.position;
     }
     update(deltaTime:number){
-        if(!this.forwardNode && !UiManager.Instance || UiManager.Instance?.isInScene){
+        if(!this.forwardNode && UiManager.Instance?.isInScene){
             this.times += deltaTime;
             if(this.times >= 1/Train.speed +0.01){
                 this.move();
