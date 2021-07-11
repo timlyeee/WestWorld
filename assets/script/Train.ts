@@ -34,8 +34,8 @@ export class Train extends Component {
     get backwardTrain(){
         return this.backwardNode?.getComponent(Train)
     }
-    @type(SpriteComponent)
-    corgeSprite:SpriteComponent | null =null;
+    @type(Node)
+    corgeSprite:Node | null =null;
     @type(Node)
     forwardNode:Node|null = null;
     @type(Node)
@@ -85,16 +85,14 @@ export class Train extends Component {
     }
     set cargo(value){
         if(this.corgeSprite){
-
             if(value){
                 this._cargo = value;
                 const spriteFrame = value.spriteFrame;
                 if(spriteFrame){
-                    this.corgeSprite.spriteFrame = spriteFrame;
+                    this.corgeSprite.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
                 }
-                
             } else {
-                this.corgeSprite!.spriteFrame = null
+                this.corgeSprite.getComponent(SpriteComponent)!.spriteFrame = null
             }
         }
     }
