@@ -2,7 +2,7 @@
   "ver": "1.0.21",
   "importer": "image",
   "imported": true,
-  "uuid": "0fcd9638-55ec-42da-a9f8-a93f2cb1771c",
+  "uuid": "56dc28c0-2317-451a-9c26-52e81924cfaf",
   "files": [
     ".png",
     ".json"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "0fcd9638-55ec-42da-a9f8-a93f2cb1771c@6c48a",
-      "displayName": "04",
+      "uuid": "56dc28c0-2317-451a-9c26-52e81924cfaf@6c48a",
+      "displayName": "BackGroundLv1",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "0fcd9638-55ec-42da-a9f8-a93f2cb1771c"
+        "imageUuidOrDatabaseUri": "56dc28c0-2317-451a-9c26-52e81924cfaf"
       },
       "ver": "1.0.21",
       "imported": true,
@@ -33,8 +33,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "0fcd9638-55ec-42da-a9f8-a93f2cb1771c@f9941",
-      "displayName": "04",
+      "uuid": "56dc28c0-2317-451a-9c26-52e81924cfaf@f9941",
+      "displayName": "BackGroundLv1",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -45,17 +45,17 @@
         "offsetY": 0,
         "trimX": 0,
         "trimY": 0,
-        "width": 446,
-        "height": 491,
-        "rawWidth": 446,
-        "rawHeight": 491,
+        "width": 2980,
+        "height": 1775,
+        "rawWidth": 2980,
+        "rawHeight": 1775,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
         "borderRight": 0,
         "packable": true,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "0fcd9638-55ec-42da-a9f8-a93f2cb1771c@6c48a",
+        "imageUuidOrDatabaseUri": "56dc28c0-2317-451a-9c26-52e81924cfaf@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.9",
@@ -69,6 +69,6 @@
   "userData": {
     "hasAlpha": true,
     "type": "sprite-frame",
-    "redirect": "0fcd9638-55ec-42da-a9f8-a93f2cb1771c@f9941"
+    "redirect": "56dc28c0-2317-451a-9c26-52e81924cfaf@f9941"
   }
 }

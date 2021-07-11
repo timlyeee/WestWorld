@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, Sprite, Canvas, Prefab, instantiate, math, Vec3 } from 'cc';
+import { _decorator, Component, Node, Sprite, Canvas, Prefab, instantiate, math, Vec3,Animation } from 'cc';
 const { ccclass, property, type } = _decorator;
 
 
@@ -21,9 +21,6 @@ export class AddRandomDecorator extends Component {
     start() {
         this.addRandomGrass(0);
         this.addRandomGrass(1);
-
-        // this.addLv1Cargos();
-        
     }
 
     addRandomGrass(grassIndex: number) {
