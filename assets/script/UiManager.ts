@@ -2,6 +2,7 @@
 import { _decorator, Component, Node,Animation, Camera, Button, Canvas, Layout, EventHandler, Font, BlockInputEvents, game, Label} from 'cc';
 import { LevelGenerater } from './level-generater';
 import { Reposition } from './reposition';
+import { Train } from './Train';
 const { ccclass, property } = _decorator;
 
 @ccclass('UiManager')
@@ -73,19 +74,24 @@ export class UiManager extends Component {
         this.menuButton!.node.active = true;
         this.isInScene=true;
         this.BlockNode!.active=false;
+        Train.stop = false;
     }
     //Pause
     OpenMenu(info: string="Pause"){
-        this.infoLabel!.string = info;
+        if(typeof(info)=='string')
+        {
+            this.infoLabel!.string = info;
+        }
         this.menuLayout!.node.active = true;
         this.BlockNode!.active=true;
         //todo: stop train move
-        
+        Train.stop = true;
     }
     //
     continue(){
         this.menuLayout!.node.active = false;
         this.BlockNode!.active=false;
+        Train.stop = false;
     }
     goHome(){
         this.rightAnim!.getState("RightMove").speed = -1;
