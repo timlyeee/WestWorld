@@ -250,10 +250,12 @@ export class LevelGenerater extends Component {
             carriage!.layer = uiLayer;
             carriageComp!.init(this.trackMatrix[startPosRow][--startPosColumn]!);
         }
-
-        const bigTree = instantiate(this.bigTree!);
-        this.node.addChild(bigTree);
-        bigTree.position = new Vec3(-148.304, 209.173,0);
+        if (index === 3) {
+            const bigTree = instantiate(this.bigTree!);
+            this.node.addChild(bigTree);
+            this.allNodes.push(bigTree);
+            bigTree.position = new Vec3(-148.304, 209.173,0);
+        }
         
         // [3]
     }
