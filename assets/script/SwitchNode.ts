@@ -19,7 +19,7 @@ export class SwitchNode extends TrackNode {
     set currentIndex(index){this._currentIndex = index, this.linkedNodes = this.switchList.slice(2 *this._currentIndex,2 *(this._currentIndex +1))}
     switch(event:Event){
         if(!this.hasTrain){
-            this.audioEffect!.playOneShot(this.audioEffect!.clip!);
+            this.audioEffect?.playOneShot(this.audioEffect!.clip!);
             this.disconnect();
             this.currentIndex ++;
             this.currentIndex %= this.switchList.length/2;
