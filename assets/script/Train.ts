@@ -85,8 +85,8 @@ export class Train extends Component {
     }
     set cargo(value){
         if(this.corgeSprite){
+            this._cargo = value;
             if(value){
-                this._cargo = value;
                 const spriteFrame = value.spriteFrame;
                 if(spriteFrame){
                     this.corgeSprite.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
