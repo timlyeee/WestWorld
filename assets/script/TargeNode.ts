@@ -21,13 +21,14 @@ export class TargeNode extends TrackNode {
     }
 
     responeTrain (train: Train) {
-        const carriage = train.backwardTrain;
+        let carriage = train.backwardTrain;
         for (let i = 0; i < this.requirements.length; i++) {
             const requirement = this.requirements[i];
             if (requirement !== carriage!.cargo?.type) {
                 UiManager.Instance?.OpenMenu('通关失败');
                 return false;
             }
+            carriage = carriage?.backwardTrain;
         }
         UiManager.Instance?.OpenMenu('通关成功');
         return true

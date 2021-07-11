@@ -19,13 +19,14 @@ enum direction {
 @requireComponent(SpriteComponent)
 export class Train extends Component {
     static speed = 3;
+    static stop = false;
     move(){
         if(this.currentNode?.responeTrain(this)){
             if(this.backwardTrain){
                 this.backwardTrain.move();
             }
         } else {
-            UiManager.Instance?.OpenMenu();
+            UiManager.Instance?.OpenMenu('失败了');
         }
     }
     get forwardTrain(){
@@ -34,8 +35,8 @@ export class Train extends Component {
     get backwardTrain(){
         return this.backwardNode?.getComponent(Train)
     }
-    @type(SpriteComponent)
-    corgeSprite:SpriteComponent | null =null;
+    @type(Node)
+    corgeSprite:Node | null =null;
     @type(Node)
     forwardNode:Node|null = null;
     @type(Node)
@@ -85,16 +86,14 @@ export class Train extends Component {
     }
     set cargo(value){
         if(this.corgeSprite){
-
+            this._cargo = value;
             if(value){
-                this._cargo = value;
                 const spriteFrame = value.spriteFrame;
                 if(spriteFrame){
-                    this.corgeSprite.spriteFrame = spriteFrame;
+                    this.corgeSprite.getComponent(SpriteComponent)!.spriteFrame = spriteFrame;
                 }
-                
             } else {
-                this.corgeSprite!.spriteFrame = null
+                this.corgeSprite.getComponent(SpriteComponent)!.spriteFrame = null
             }
         }
     }
@@ -103,7 +102,7 @@ export class Train extends Component {
         this.node.position = trackNode.node.position;
     }
     update(deltaTime:number){
-        if(!this.forwardNode && UiManager.Instance?.isInScene){
+        if(!Train.stop && !this.forwardNode && UiManager.Instance?.isInScene){
             this.times += deltaTime;
             if(this.times >= 1/Train.speed +0.01){
                 this.move();
