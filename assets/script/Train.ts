@@ -139,7 +139,7 @@ export class Train extends Component {
         this.node.position = trackNode.node.position;
     }
     update(deltaTime:number){
-        if(!this.forwardNode && UiManager.Instance?.isInScene){
+        if(!this.forwardNode && !UiManager.Instance || UiManager.Instance?.isInScene){
             this.times += deltaTime;
             if(this.times >= 1/Train.speed +0.01){
                 this.move();
