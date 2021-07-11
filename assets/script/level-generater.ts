@@ -30,7 +30,7 @@ function isNormalTrack (type: number) {
 }
 
 function isCharger (type: number) {
-    return type >= 21;
+    return type >= 21 && type < 30;
 }
 
 function isTarget (type: number) {
