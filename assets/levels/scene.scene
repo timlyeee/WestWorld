@@ -20677,11 +20677,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-<<<<<<< HEAD
-    "levelIndex": 0,
-=======
     "levelIndex": 2,
->>>>>>> cf9394a42c0c5a722aac68af32bae55f98544fa7
     "levelConfigurations": [
       {
         "__uuid__": "014091b9-66a7-45f4-9629-60f4a65c9f0d",
