@@ -4,7 +4,7 @@ import { Cargo } from './Cargo';
 import { TrackNode } from './TrackNode';
 import { UiManager } from './UiManager';
 const { ccclass, property , type ,requireComponent} = _decorator;
-export enum Direction {
+enum direction {
     LEFTUP,
     UP,
     RIGHTUP,
@@ -56,7 +56,16 @@ export class Train extends Component {
     set currentNode(value){
         if(value){
             this._currentNode = value;
-            this.spriteFrame = this.spriteFrameArray[value.direction];
+            const deltaVector = math.Vec3.add(new math.Vec3(), math.Vec3.negate(new math.Vec3(),this.node.worldPosition) , value.node.worldPosition)  
+                if(deltaVector.x >0) {
+                    this.spriteFrame = this.spriteFrameArray[direction.RIGHT]
+                } else if (deltaVector.x < 0) {
+                    this.spriteFrame = this.spriteFrameArray[direction.LEFT]
+                } else if (deltaVector.y > 0 ) {
+                    this.spriteFrame = this.spriteFrameArray[direction.UP]
+                } else if (deltaVector.y < 0) {
+                    this.spriteFrame = this.spriteFrameArray[direction.DOWN]
+                }
             tween(this.node)
             .to(1/Train.speed,{
                 worldPosition:value.node.worldPosition,

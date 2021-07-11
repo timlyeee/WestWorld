@@ -1,11 +1,10 @@
 
 import { _decorator, Component, Node, SpriteComponent, SpriteFrame, Sprite } from 'cc';
-import  {Train ,Direction} from './Train';
+import  {Train} from './Train';
 const { ccclass, property,type,requireComponent} = _decorator;
 @ccclass('TrackNode')
 @requireComponent(SpriteComponent)
 export class TrackNode extends Component {
-    public direction:Direction=Direction.RIGHT;
     responeTrain(train:Train){
         train.lastNode = train.currentNode;
         this.hasTrain = true;
