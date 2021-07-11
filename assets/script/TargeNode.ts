@@ -25,8 +25,9 @@ export class TargeNode extends TrackNode {
         for (let i = 0; i < this.requirements.length; i++) {
             const requirement = this.requirements[i];
             if (requirement !== carriage!.cargo?.type) {
-                UiManager.Instance?.OpenMenu('通关失败');
-                return false;
+                UiManager.Instance?.OpenMenu('所需货物不对');
+                Train.stop = true;
+                return true;
             }
             carriage = carriage?.backwardTrain;
         }

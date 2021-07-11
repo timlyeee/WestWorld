@@ -30,7 +30,7 @@ function isNormalTrack (type: number) {
 }
 
 function isCharger (type: number) {
-    return type >= 21 && type < 30;
+    return type >= 21;
 }
 
 function isTarget (type: number) {
@@ -78,6 +78,8 @@ export class LevelGenerater extends Component {
     @type(Prefab)
     public targetPrefab: Prefab | null = null;
 
+    @property(Prefab)
+    public bigTree:Prefab | null = null;
     @type(CCInteger)
     public tileSize: number = 40;
 
@@ -248,6 +250,10 @@ export class LevelGenerater extends Component {
             carriage!.layer = uiLayer;
             carriageComp!.init(this.trackMatrix[startPosRow][--startPosColumn]!);
         }
+
+        const bigTree = instantiate(this.bigTree!);
+        this.node.addChild(bigTree);
+        bigTree.position = new Vec3(-148.304, 209.173,0);
         
         // [3]
     }

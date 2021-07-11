@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "BigTree",
+    "_name": "cutterwithwood",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -23,15 +23,18 @@
       },
       {
         "__id__": 4
+      },
+      {
+        "__id__": 6
       }
     ],
     "_prefab": {
-      "__id__": 6
+      "__id__": 8
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -170.30399999999997,
-      "y": 275.173,
+      "x": -137.092,
+      "y": -5.636,
       "z": 0
     },
     "_lrot": {
@@ -43,8 +46,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.1,
+      "y": 0.1,
       "z": 1
     },
     "_layer": 33554432,
@@ -69,8 +72,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 300
+      "width": 538,
+      "height": 391
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -106,12 +109,12 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "544acbf5-c4c0-4adb-b896-4c4408a064e7@f9941",
+      "__uuid__": "f567577c-04e6-470c-a4ec-e251641be29e@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -129,6 +132,38 @@
     "fileId": "e71ctEmpxFC4KlSYRZNz/a"
   },
   {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 7
+    },
+    "playOnLoad": true,
+    "_clips": [
+      {
+        "__uuid__": "3b094ec2-90b5-4953-99d8-866747b40367",
+        "__expectedType__": "cc.AnimationClip"
+      },
+      {
+        "__uuid__": "775fb58f-c521-43a1-8b48-f20b3d1a59db",
+        "__expectedType__": "cc.AnimationClip"
+      }
+    ],
+    "_defaultClip": {
+      "__uuid__": "3b094ec2-90b5-4953-99d8-866747b40367",
+      "__expectedType__": "cc.AnimationClip"
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "70fzqwesZJ3qbEHZ9N5hhv"
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -136,6 +171,6 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "7emHTWHctB24A2JEl4qDmW"
+    "fileId": "ealKcFK21OPaSPR6xDERAG"
   }
 ]
