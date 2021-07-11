@@ -21,6 +21,8 @@ export class UiManager extends Component {
     public currentFunctionCall: Function = this.changeLevel1;
 
     @property(Button)
+    public SpeedButton:Button|null = null;
+    @property(Button)
     public levelButtons:Button[]=[];
 
     @property(Layout)
@@ -72,6 +74,7 @@ export class UiManager extends Component {
         this.leftAnim!.play();
         this.rightAnim!.play();
         this.menuButton!.node.active = true;
+        this.SpeedButton!.node.active = true;
         this.isInScene=true;
         this.BlockNode!.active=false;
         Train.stop = false;
@@ -193,7 +196,12 @@ export class UiManager extends Component {
         this.currentFunctionCall();
         this.continue();
     }
-    
+    changeSpeed()
+    {
+        if(Train.speed==1)
+            Train.speed =2;
+            else Train.speed=1;
+    }
 
 }
 
