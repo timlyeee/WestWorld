@@ -3,6 +3,7 @@ import { _decorator, Component, Node, JsonAsset, SpriteFrame, Sprite, Vec3, Laye
 import { Cargo } from './Cargo';
 import { ChargeNode } from './ChargeNode';
 import { SwitchNode } from './SwitchNode';
+import { TargeNode } from './TargeNode';
 import { TrackNode } from './TrackNode';
 import { Train } from './Train';
 const { ccclass, property, type } = _decorator;
@@ -13,7 +14,8 @@ declare class LevelConfiguration extends JsonAsset {
         switchers: Record<number, { options: number[] }>;
         trainPosition: number[],
         carriageNumber: number,
-        chargers: Record<number, { name: string, type: number, state: number, trackType: number }>
+        chargers: Record<number, { name: string, type: number, state: number, trackType: number }>,
+        target: { requirements: number[], trackType: number },
     }
 }
 
@@ -29,6 +31,10 @@ function isNormalTrack (type: number) {
 
 function isCharger (type: number) {
     return type >= 21;
+}
+
+function isTarget (type: number) {
+    return type >= 30;
 }
 
 @ccclass('LevelGenerated')
@@ -68,6 +74,9 @@ export class LevelGenerater extends Component {
 
     @type([SpriteFrame])
     public cargoSpriteFrames: SpriteFrame[] = [];
+
+    @type(Prefab)
+    public targetPrefab: Prefab | null = null;
 
     @type(CCInteger)
     public tileSize: number = 40;
@@ -135,6 +144,17 @@ export class LevelGenerater extends Component {
                     marker.setParent(track);
                     marker.layer = uiLayer;
                     marker.position = new Vec3(0, 0, 0);
+                } else if (isTarget(type)) {
+                    const track = instantiate(this.targetPrefab!);
+                    track.name = `Target ${i}, ${j}`;
+                    this.allNodes.push(track);
+                    const targeNode = track.getComponent(TargeNode);
+                    targeNode!.requirements = configurations.target.requirements;
+                    this.trackMatrix[i][j] = targeNode;
+                    targeNode!.spriteFrame = this.trackSpriteFrames[configurations.target.trackType - 1];
+                    track.setParent(this.node);
+                    track.layer = uiLayer;
+                    track.position = new Vec3((j - columnNumber / 2) * this.tileSize + this.tileSize / 2, (rowNumber - 1 - i - rowNumber / 2) * this.tileSize + this.tileSize / 2, 0 );
                 }
             }
         }

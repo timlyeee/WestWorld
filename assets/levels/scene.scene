@@ -385,7 +385,7 @@
         "__id__": 235
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 242
@@ -5823,7 +5823,7 @@
         "__id__": 534
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 542
@@ -15127,7 +15127,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "levelIndex": 1,
+    "levelIndex": 0,
     "levelConfigurations": [
       {
         "__uuid__": "014091b9-66a7-45f4-9629-60f4a65c9f0d",
@@ -15218,6 +15218,7 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
+    "targetPrefab": null,
     "tileSize": 40,
     "_id": "e3T0ogRKBK0q797nT4pEa2"
   },

@@ -47,7 +47,7 @@ export class ChargeNode extends TrackNode {
     @type(CargoType)
     cargoType:CargoType = CargoType.PIG;
     responeTrain(train:Train){
-        const result =super.responeTrain(train);
+        const result = super.responeTrain(train);
         if(this.cargo && !train.cargo){
             train.cargo = this.cargo;
             this.cargo = null;
