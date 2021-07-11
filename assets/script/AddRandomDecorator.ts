@@ -22,7 +22,7 @@ export class AddRandomDecorator extends Component {
         this.addRandomGrass(0);
         this.addRandomGrass(1);
 
-        this.addLv1Cargos();
+        // this.addLv1Cargos();
         
     }
 

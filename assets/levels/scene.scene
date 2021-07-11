@@ -8684,6 +8684,36 @@
       "__uuid__": "aba8b3fd-d03d-4e49-a208-5375e1e02bf8",
       "__expectedType__": "cc.Prefab"
     },
+    "chargerPrefab": {
+      "__uuid__": "cbab3257-694a-4c24-b81d-34886515e430",
+      "__expectedType__": "cc.Prefab"
+    },
+    "markerPrefab": {
+      "__uuid__": "0349744f-5b42-4837-8ec4-e00240ebfc51",
+      "__expectedType__": "cc.Prefab"
+    },
+    "cargoSpriteFrames": [
+      {
+        "__uuid__": "ab20f1be-65db-4d7e-ad91-978703628823@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "be696b4b-4ddc-4f09-9997-a3a43c5b4084@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "aa9fc385-6be8-47c1-8e5a-1117fac1bd27@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "46c55780-d957-4f93-a114-d560a89e1724@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "1a26407c-7f9f-4e2a-9882-fe2c98caeb25@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
     "tileSize": 40,
     "_id": "e3T0ogRKBK0q797nT4pEa2"
   },
