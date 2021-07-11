@@ -1,0 +1,66 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "NoPig",
+    "_objFlags": 0,
+    "_native": "",
+    "sample": 60,
+    "speed": 1,
+    "wrapMode": 2,
+    "events": [],
+    "enableTrsBlending": false,
+    "_duration": 0.6833333333333333,
+    "_keys": [
+      [
+        0,
+        0.16666666666666666,
+        0.3333333333333333,
+        0.5,
+        0.6666666666666666
+      ]
+    ],
+    "_stepness": 0,
+    "_curves": [
+      {
+        "modifiers": [
+          {
+            "__id__": 1
+          },
+          "spriteFrame"
+        ],
+        "data": {
+          "keys": 0,
+          "values": [
+            {
+              "__uuid__": "b69065e8-0e5d-406e-8510-962d155e8eec@f9941",
+              "__expectedType__": "cc.SpriteFrame"
+            },
+            {
+              "__uuid__": "0ba7785c-4443-40fd-a1ba-d25e5e4f35d2@f9941",
+              "__expectedType__": "cc.SpriteFrame"
+            },
+            {
+              "__uuid__": "c67c99c7-6bf1-493e-b2ad-c32273660339@f9941",
+              "__expectedType__": "cc.SpriteFrame"
+            },
+            {
+              "__uuid__": "593f4438-15ad-481d-b126-ae74427f5c78@f9941",
+              "__expectedType__": "cc.SpriteFrame"
+            },
+            {
+              "__uuid__": "b69065e8-0e5d-406e-8510-962d155e8eec@f9941",
+              "__expectedType__": "cc.SpriteFrame"
+            }
+          ],
+          "easingMethods": {}
+        }
+      }
+    ],
+    "_commonTargets": [],
+    "_hash": 1821103486
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  }
+]
