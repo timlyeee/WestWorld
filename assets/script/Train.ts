@@ -48,7 +48,6 @@ export class Train extends Component {
     set spriteFrame(v){
         this.node.getComponent(SpriteComponent)!.spriteFrame = v;
     }
-    lastDeltaVector:math.Vec3 = math.v3();
     @type(TrackNode)
     get currentNode(){
         return this._currentNode;
@@ -57,45 +56,6 @@ export class Train extends Component {
         if(value){
             this._currentNode = value;
             const deltaVector = math.Vec3.add(new math.Vec3(), math.Vec3.negate(new math.Vec3(),this.node.worldPosition) , value.node.worldPosition)  
-            if(deltaVector.x < -1){
-                if(this.lastDeltaVector.y > 0){
-                    this.spriteFrame = this.spriteFrameArray[direction.LEFTUP]
-                } else if(this.lastDeltaVector.y < 0){
-                    this.spriteFrame = this.spriteFrameArray[direction.LEFTDOWN]
-                } else {
-                    this.spriteFrame = this.spriteFrameArray[direction.LEFT]
-                }
-            } else if (deltaVector.x > 1) {
-                if(this.lastDeltaVector.y > 0){
-                    this.spriteFrame = this.spriteFrameArray[direction.RIGHTUP]
-                } else if(this.lastDeltaVector.y < 0){
-                    this.spriteFrame = this.spriteFrameArray[direction.RIGHTDOWN]
-                } else {
-                    this.spriteFrame = this.spriteFrameArray[direction.RIGHT]
-                }
-            } else if (deltaVector.y < -1) {
-                if(this.lastDeltaVector.x > 0){
-                    this.spriteFrame = this.spriteFrameArray[direction.RIGHTDOWN]
-                } else if(this.lastDeltaVector.x < 0){
-                    this.spriteFrame = this.spriteFrameArray[direction.LEFTDOWN]
-                } else {
-                    this.spriteFrame = this.spriteFrameArray[direction.DOWN]
-                }
-            } else if (deltaVector.y > 1) {
-                if(this.lastDeltaVector.x > 0){
-                    this.spriteFrame = this.spriteFrameArray[direction.RIGHTUP]
-                } else if(this.lastDeltaVector.x < 0){
-                    this.spriteFrame = this.spriteFrameArray[direction.LEFTUP]
-                } else {
-                    this.spriteFrame = this.spriteFrameArray[direction.UP]
-                }
-            }
-            tween(this.node)
-            .to(1/Train.speed,{
-                worldPosition:value.node.worldPosition,
-            })
-            .call(()=>{
-                this.lastDeltaVector = deltaVector;
                 if(deltaVector.x >0) {
                     this.spriteFrame = this.spriteFrameArray[direction.RIGHT]
                 } else if (deltaVector.x < 0) {
@@ -105,14 +65,15 @@ export class Train extends Component {
                 } else if (deltaVector.y < 0) {
                     this.spriteFrame = this.spriteFrameArray[direction.DOWN]
                 }
+            tween(this.node)
+            .to(1/Train.speed,{
+                worldPosition:value.node.worldPosition,
             })
             .start()
         }
     }
     @type([SpriteFrame])
     spriteFrameArray:SpriteFrame[] =[];
-    @type([SpriteFrame])
-    cargoSpriteFrameArray:SpriteFrame[] =[];
     @type(TrackNode)
     lastNode:TrackNode|null=null;
     times=0
@@ -125,13 +86,12 @@ export class Train extends Component {
     set cargo(value){
         if(value){
             this._cargo = value;
-            const spriteFrame = this.cargoSpriteFrameArray[value.type];
+            const spriteFrame = value.spriteFrame;
             if(spriteFrame){
                 this.corgeSprite!.spriteFrame = spriteFrame;
-                this.corgeSprite!.visibility = 255;
             }
         } else {
-            this.corgeSprite!.visibility = 0;
+            this.corgeSprite!.spriteFrame = null
         }
     }
     init(trackNode:TrackNode){

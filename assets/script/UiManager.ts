@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node,Animation, Camera, Button, Canvas, Layout, EventHandler, Font, BlockInputEvents, game} from 'cc';
+import { _decorator, Component, Node,Animation, Camera, Button, Canvas, Layout, EventHandler, Font, BlockInputEvents, game, Label} from 'cc';
 import { LevelGenerater } from './level-generater';
 import { Reposition } from './reposition';
 const { ccclass, property } = _decorator;
@@ -37,6 +37,9 @@ export class UiManager extends Component {
     public BlockNode:Node|null = null;
 
     public levelGenerater :LevelGenerater|null=null;
+
+    @property(Label)
+    public infoLabel: Label|null  =null;
     start () {
         UiManager.Instance = this;
         //const leftAnim =  this.leftNodeToMove!.getComponent(Animation);
@@ -69,10 +72,12 @@ export class UiManager extends Component {
         this.BlockNode!.active=false;
     }
     //Pause
-    OpenMenu(){
+    OpenMenu(info: string="Pause"){
+        this.infoLabel!.string = info;
         this.menuLayout!.node.active = true;
         this.BlockNode!.active=true;
         //todo: stop train move
+        
     }
     //
     continue(){
