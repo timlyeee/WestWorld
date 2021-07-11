@@ -84,14 +84,18 @@ export class Train extends Component {
         return this._cargo;
     }
     set cargo(value){
-        if(value){
-            this._cargo = value;
-            const spriteFrame = value.spriteFrame;
-            if(spriteFrame){
-                this.corgeSprite!.spriteFrame = spriteFrame;
+        if(this.corgeSprite){
+
+            if(value){
+                this._cargo = value;
+                const spriteFrame = value.spriteFrame;
+                if(spriteFrame){
+                    this.corgeSprite.spriteFrame = spriteFrame;
+                }
+                
+            } else {
+                this.corgeSprite!.spriteFrame = null
             }
-        } else {
-            this.corgeSprite!.spriteFrame = null
         }
     }
     init(trackNode:TrackNode){
