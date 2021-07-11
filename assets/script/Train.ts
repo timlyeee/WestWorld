@@ -18,7 +18,7 @@ enum direction {
 @ccclass('Train')
 @requireComponent(SpriteComponent)
 export class Train extends Component {
-    static speed = 3;
+    static speed = 1;
     static stop = false;
     move(){
         if(this.currentNode?.responeTrain(this)){
@@ -56,16 +56,6 @@ export class Train extends Component {
     set currentNode(value){
         if(value){
             this._currentNode = value;
-            const deltaVector = math.Vec3.add(new math.Vec3(), math.Vec3.negate(new math.Vec3(),this.node.worldPosition) , value.node.worldPosition)  
-                if(deltaVector.x >0) {
-                    this.spriteFrame = this.spriteFrameArray[direction.RIGHT]
-                } else if (deltaVector.x < 0) {
-                    this.spriteFrame = this.spriteFrameArray[direction.LEFT]
-                } else if (deltaVector.y > 0 ) {
-                    this.spriteFrame = this.spriteFrameArray[direction.UP]
-                } else if (deltaVector.y < 0) {
-                    this.spriteFrame = this.spriteFrameArray[direction.DOWN]
-                }
             tween(this.node)
             .to(1/Train.speed,{
                 worldPosition:value.node.worldPosition,
@@ -100,8 +90,21 @@ export class Train extends Component {
     init(trackNode:TrackNode){
         this._currentNode = trackNode;
         this.node.position = trackNode.node.position;
+        this.lastNode = trackNode;
     }
     update(deltaTime:number){
+        const deltaX = this.currentNode!.node.worldPosition.x - this.lastNode!.node.worldPosition.x;
+        const deltaY = this.currentNode!.node.worldPosition.y - this.lastNode!.node.worldPosition.y;
+        if(deltaX > 0){
+            this.spriteFrame = this.spriteFrameArray[direction.RIGHT]
+        } else if (deltaX < 0) {
+            this.spriteFrame = this.spriteFrameArray[direction.LEFT]
+        } else if (deltaY > 0 ){
+            this.spriteFrame = this.spriteFrameArray[direction.UP]
+        } else if (deltaY < 0) {
+            this.spriteFrame = this.spriteFrameArray[direction.DOWN]
+        }
+        
         if(!Train.stop && !this.forwardNode && UiManager.Instance?.isInScene){
             this.times += deltaTime;
             if(this.times >= 1/Train.speed +0.01){
