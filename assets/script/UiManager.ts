@@ -38,6 +38,9 @@ export class UiManager extends Component {
 
     public levelGenerater :LevelGenerater|null=null;
 
+    @property(Node)
+    public sceneNode: Node[]=[];
+
     @property(Label)
     public infoLabel: Label|null  =null;
     start () {
@@ -110,7 +113,11 @@ export class UiManager extends Component {
         //     this.currentFunctionCall = this.changeLevel1;
         this.levelGenerater?.clear();
         this.levelGenerater!.loadScene(0);
-        
+        for( var i of this.sceneNode)
+        {
+            i.active = false;
+        }
+        this.sceneNode[0].active = true;
         if(!this.isInScene){
         const buttonAnimation = this.levelButtons[0].getComponent(Animation);
         buttonAnimation?.play("1Lv1");
@@ -125,6 +132,12 @@ export class UiManager extends Component {
         this.levelGenerater?.clear();
         this.levelGenerater!.loadScene(1);
         
+        for( var i of this.sceneNode)
+        {
+            i.active = false;
+        }
+        this.sceneNode[1].active = true;
+
         if(!this.isInScene){
         const buttonAnimation = this.levelButtons[1].getComponent(Animation);
         buttonAnimation?.play("2Lv2");
@@ -138,6 +151,12 @@ export class UiManager extends Component {
         this.levelGenerater?.clear();
         this.levelGenerater!.loadScene(2);
         
+        for( var i of this.sceneNode)
+        {
+            i.active = false;
+        }
+        this.sceneNode[2].active = true;
+
         if(!this.isInScene){
         const buttonAnimation = this.levelButtons[2].getComponent(Animation);
         buttonAnimation?.play("3Lv3");
@@ -150,7 +169,11 @@ export class UiManager extends Component {
             this.currentFunctionCall = this.changeLevel4;
         this.levelGenerater?.clear();
         this.levelGenerater!.loadScene(3);
-        
+        for( var i of this.sceneNode)
+        {
+            i.active = false;
+        }
+        this.sceneNode[3].active = true;
         if(!this.isInScene){
         const buttonAnimation = this.levelButtons[3].getComponent(Animation);
         buttonAnimation?.play("4Lv4");
